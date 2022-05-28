@@ -16,9 +16,18 @@ app.use('/static', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
+  client.query('SELECT * FROM pixels', (err, res) => {
+    console.log(res.rows)
+  })
+
 });
 
 io.on('connection', (socket) => {
+    client.query('SELECT * FROM pixels', (err, res) => {
+      socket.emit("data", res.rows);
+      console.log(res.rows, "data")
+    })
+
     console.log('a user connected');
     socket.on('disconnect', () => {
       console.log('user disconnected');
@@ -26,6 +35,13 @@ io.on('connection', (socket) => {
 
     socket.on('chat message', (msg) => {
       io.emit('chat message', msg);
+      //insert msg.X, msg.Y, msg.F into database
+      client.query('INSERT INTO pixels (x, y, Color) VALUES ($1, $2, $3)', [msg.X, msg.Y, msg.F]).catch(e => console.error(e.stack))
+      //print msg.X, msg.Y, msg.F to console from database
+      client.query('SELECT * FROM pixels', (err, res) => {
+        console.log(res.rows)
+      })
+      
       console.log('message: ' + msg.X + ' ' + msg.Y + ' ' + msg.F);
       console.log("YAYA");
       });
