@@ -15,11 +15,16 @@ client.connect()
 app.use('/static', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
-  client.query('SELECT * FROM pixels', (err, res) => {
-    console.log(res.rows)
-  })
 
+  res.sendFile(__dirname + '/public/homepage.html');
+});
+
+app.get('/canvas', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.get('/about', (req, res) => {
+  res.sendFile(__dirname + '/public/about.html');
 });
 
 io.on('connection', (socket) => {
