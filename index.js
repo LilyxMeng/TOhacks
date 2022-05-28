@@ -1,12 +1,17 @@
 const express = require('express');
-const Papa = require('papaparse');
 const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
-const fs = require('fs');
-var process = require('process');
+
+const { Client } = require('pg')
+
+process.env.DATABASE_URL = "postgresql://noah:3RBBXHjRdZ2oMtW2pSpLwQ@free-tier11.gcp-us-east1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&options=--cluster%3Dcheeky-grebe-896"
+
+const client = new Client(process.env.DATABASE_URL)
+
+client.connect()
 
 
 app.use('/static', express.static(__dirname + '/public'));
@@ -25,8 +30,6 @@ io.on('connection', (socket) => {
       io.emit('chat message', msg);
       console.log('message: ' + msg.X + ' ' + msg.Y + ' ' + msg.F);
       console.log("YAYA");
-
-
       });
   });
 
