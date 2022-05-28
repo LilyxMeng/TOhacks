@@ -15,7 +15,11 @@ client.connect()
 app.use('/static', express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/homepage.html');
+});
+
+app.get('/canvas', (req, res) => {
+  res.sendFile(__dirname + "/index.html");
 });
 
 io.on('connection', (socket) => {

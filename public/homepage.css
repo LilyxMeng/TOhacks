@@ -1,0 +1,39 @@
+body {
+  background-color: #212529;
+}
+
+.main{
+  padding: 8%;
+  color:bisque;
+}
+
+.right {
+  margin: auto;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+img {
+  width: 50%;
+}
+
+.btn {
+  
+}
+
+hr {
+  width: 7%;
+  color: black;
+  border-style: none;
+  border-top: dotted;
+  border-width: 5px;
+  margin: 30px auto;
+}
+
+#particles-js {
+  /* height: 100vh; */
+}
