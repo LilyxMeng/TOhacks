@@ -7,8 +7,6 @@ const io = new Server(server);
 
 const { Client } = require('pg')
 
-process.env.DATABASE_URL = "postgresql://noah:3RBBXHjRdZ2oMtW2pSpLwQ@free-tier11.gcp-us-east1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full&options=--cluster%3Dcheeky-grebe-896"
-
 const client = new Client(process.env.DATABASE_URL)
 
 client.connect()
