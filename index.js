@@ -23,6 +23,11 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
+    client.query('SELECT * FROM pixels', (err, res) => {
+      socket.emit("data", res.rows);
+      console.log(res.rows, "data")
+    })
+
     console.log('a user connected');
     socket.on('disconnect', () => {
       console.log('user disconnected');
