@@ -5,6 +5,11 @@ body {
 .main{
   padding: 8%;
   color:bisque;
+  display: flex;
+}
+
+.left {
+  margin: auto;
 }
 
 .right {
@@ -22,7 +27,7 @@ img {
 }
 
 .btn {
-  
+  margin-right: 10px;
 }
 
 hr {
@@ -35,5 +40,8 @@ hr {
 }
 
 #particles-js {
-  /* height: 100vh; */
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }

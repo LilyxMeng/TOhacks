@@ -31,3 +31,19 @@ body {
   height: 1500px;
   /* Used in this example to enable scrolling */
 }
+
+.btn {
+  margin-right: 10px;
+}
+
+.dropdown-menu.show {
+  display: block;
+  position: fixed;
+  top: 50px;
+}
+
+input {
+  width: 15px;
+  height: 15px;
+  padding: 0;
+}

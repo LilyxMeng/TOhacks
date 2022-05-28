@@ -22,6 +22,10 @@ app.get('/canvas', (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get('/about', (req, res) => {
+  res.sendFile(__dirname + '/public/about.html');
+});
+
 io.on('connection', (socket) => {
     console.log('a user connected');
     socket.on('disconnect', () => {

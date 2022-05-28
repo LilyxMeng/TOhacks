@@ -5,14 +5,50 @@ let cnv;
   cnv = document.getElementById("cnv");
   cnv.width = 2000; 
   cnv.height = 2000;
-  const padding = 47;
+  const padding = 75;
   //cnv.style.backgroundColor = "black";
   cnv.style.border = "1px solid black";
   cnv.style.padding.top = padding + "px";
 
 
   var ctx = cnv.getContext("2d");
-  ctx.fillStyle = "#FF0000";
+
+
+
+
+
+  var colour = "#0000ff";
+  var colorWell;
+  var defaultColor = "#0000ff";
+  
+  window.addEventListener("load", startup, false);
+
+  function startup() {
+    colorWell = document.querySelector("#colorWell");
+    colorWell.value = defaultColor;
+    colorWell.addEventListener("input", updateFirst, false);
+    colorWell.select();
+  }
+
+  function updateFirst(event) {
+    var p = document.querySelector("p");
+  
+    if (p) {
+      p.style.color = event.target.value;
+      console.log(event.target.value);
+      colour = event.target.value;
+    }
+  }
+  
+  console.log("colour: " + colour);
+
+  ctx.fillStyle = colour;
+
+
+
+
+
+
   ctx.lineWidth = 2;
   //for loop to draw the grid
   for (var i = 0; i < cnv.width; i += 10) {
@@ -35,6 +71,7 @@ let cnv;
       data = results.data;
   }
   });
+
 
   console.log(data);
   //for loop over results
@@ -62,7 +99,7 @@ let cnv;
     if (Date.now() - timeout >= 2000) {
         var x = Math.floor((event.pageX) / 10) * 10;
         var y = Math.floor((event.pageY - padding) / 10) * 10;
-        socket.emit('chat message', { X: x, Y: y, F: ctx.fillStyle});
+        socket.emit('chat message', { X: x, Y: y, F: colour});
         console.log(x, y);
         timeout = Date.now();
     } else {
@@ -72,6 +109,7 @@ let cnv;
 
 
 socket.on('chat message', function(msg) {
+  ctx.fillStyle = msg.F;
   ctx.fillRect(msg.X, msg.Y, 10, 10);
   console.log(msg);
 });
