@@ -8,6 +8,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+
 }
 
 .navbar a {
@@ -20,10 +21,6 @@ body {
   font-size: 17px;
 }
 
-.navbar a:hover {
-  background: #ddd;
-  color: black;
-}
 
 .main {
   padding: 16px;
@@ -46,4 +43,28 @@ input {
   width: 15px;
   height: 15px;
   padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+::selection {
+  background:#00c9ff;
+  color: white;
+  border-radius: 10px;
 }

@@ -117,6 +117,7 @@ socket.on('chat message', function(msg) {
 socket.on('data', function(msg) {
   //loop over array of objects
   for (var i = 0; i < msg.length; i++) {
+    ctx.fillStyle = msg[i].color; 
     ctx.fillRect(msg[i].x, msg[i].y, 10, 10);
   }
 });

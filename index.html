@@ -9,17 +9,20 @@
   </head>
   <body>
 
-    <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-      <a href="/" type="button" class="btn btn-primary" style="margin-left: 10px; height: 40px; padding-top: 6px;">Home</a>
+    <nav class="navbar navbar-light" style="background-color: #212529; position: fixed;">
+      <div class="left" onclick="location.href='/'" style="display: flex;">
+        <img src="https://www.sirchend.com/wp-content/uploads/2019/11/multi_design.png" style="height: 60px; margin: -10px; margin-left: 5px;">
+        <p style="padding-left: 20px; margin: auto; color: bisque; font-size: 18px">r/Place</p>
+      </div>
 
       <div style=" margin-top: 15px; margin-right: 20px;">
-        <label for="colorWell" style="font-size: 18px;">Color:</label>
+        <label for="colorWell" style="font-size: 18px; color: bisque; margin-right: 5px;">Color:</label>
         <input type="color" value="#ff0000" id="colorWell">
         <p></p>
         </div>
 
       </nav> 
-    <canvas id="cnv"></canvas>
+    <canvas id="cnv" style="background-color: #212529; margin-top: 73px;"></canvas>
 
     
     <script src="/socket.io/socket.io.js"></script>
