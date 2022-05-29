@@ -41,9 +41,8 @@ console.log("colour: " + colour);
 
 ctx.fillStyle = colour;
 
-
-
-
+ctx.fillStyle = "#212529";
+ctx.fillRect(0, 0, cnv.width, cnv.height);
 
 
 ctx.lineWidth = 2;
@@ -57,17 +56,6 @@ for (var i = 0; i < cnv.width; i += 10) {
 ctx.stroke();
 
 var data;
-Papa.parse("/static/filled.csv",
-  {
-    delimiter: ",",
-    download: true,
-    header: false,
-    skipEmptyLines: true,
-    complete: function (results) {
-      console.log(results);
-      data = results.data;
-    }
-  });
 
 
 console.log(data);
@@ -82,6 +70,16 @@ console.log("YAYAYAY")
 //}
 // }
 // }
+
+// if download button is clicked, download the file
+var downloadButton = document.getElementById("download");
+downloadButton.onclick = function() {
+  var dataURL = cnv.toDataURL();
+  var link = document.createElement("a");
+  link.download = "my-image.png";
+  link.href = dataURL;
+  link.click();
+};
 
 
 
