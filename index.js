@@ -23,6 +23,10 @@ app.get('/canvas', (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
+app.get('/tutorial', (req, res) => {
+  res.sendFile(__dirname + "/public/tutorial.html");
+});
+
 app.get('/about', (req, res) => {
   res.sendFile(__dirname + '/public/about.html');
 });
