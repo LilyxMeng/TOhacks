@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
       // else insert new row into database
       client.query('INSERT INTO pixels (x, y, Color) VALUES ($1, $2, $3)', [msg.X, msg.Y, msg.F], (err, res) => {
         if (err) {
-          console.log(err.stack)
+          console.log("Duplicate entry");
           // find row with same x and y
           // update color
           client.query('UPDATE pixels SET Color = $1 WHERE x = $2 AND y = $3', [msg.F, msg.X, msg.Y], (err, res) => {
@@ -60,11 +60,6 @@ io.on('connection', (socket) => {
           })
         }
       });
-
-      //print msg.X, msg.Y, msg.F to console from database
-      client.query('SELECT * FROM pixels', (err, res) => {
-        console.log(res.rows)
-      })
       
       console.log('message: ' + msg.X + ' ' + msg.Y + ' ' + msg.F);
       console.log("YAYA");
