@@ -1,38 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Socket.IO chat</title>
-    <title>Place</title>
-    <link rel="stylesheet" href="/static/global.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-  </head>
-  <body>
+<head>
+  <title>COINSPIRE</title>
+  <link rel="stylesheet" href="/static/global.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://www.sirchend.com/wp-content/uploads/2019/11/multi_design.png">
 
-    <nav class="navbar navbar-light" style="background-color: #212529; position: fixed;">
-      <div class="left" onclick="location.href='/'" style="display: flex;">
-        <img src="https://www.sirchend.com/wp-content/uploads/2019/11/multi_design.png" style="height: 60px; margin: -10px; margin-left: 5px;">
-        <p style="padding-left: 20px; margin: auto; color: bisque; font-size: 18px">r/Place</p>
-      </div>
 
-      <div style=" margin-top: 15px; margin-right: 20px;">
-        <label for="colorWell" style="font-size: 18px; color: bisque; margin-right: 5px;">Color:</label>
-        <input type="color" value="#ff0000" id="colorWell">
+</head>
+
+<body>
+
+  <style>
+    * {
+      font-family: 'Walter Turncoat', cursive;
+      font-size: 20px;
+    }
+  </style>
+
+  <nav class="navbar navbar-light" style="background-color: #212529; position: fixed; height: 75px; display: grid; grid-template-columns: 33% 33% 33%;" id="nav">
+    <div class="left" onclick="location.href='/'" style="display: flex;">
+      <img src="https://www.sirchend.com/wp-content/uploads/2019/11/multi_design.png"
+        style="height: 60px; margin: -10px; margin-left: 5px;">
         <p></p>
-        </div>
+      <p style="padding-left: 20px; margin: auto 0; color: bisque;">COINSPIRE</p>
+    </div>
 
-      </nav> 
-    <canvas id="cnv" style="background-color: #212529; margin-top: 73px;"></canvas>
+    <p class="change" style="color:bisque; margin:auto;" id="timeout">Timeout: 0.0s</p>
 
-    
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="/static/app.js"></script>
-    
-  </body>
+    <div style=" margin: auto; margin-right: 20px;">
+      <label class="change" for="colorWell" style="color: bisque; margin:auto; margin-right: 5px;">Color:</label>
+      <input type="color" value="#ff0000" id="colorWell">
+    </div>
+
+    <!-- <div class="toggle">
+      <label class="switch">
+        <input id="toggler" type="checkbox" value="true">
+        <span class="slider round"></span>
+      </label>
+    </div> -->
+
+  </nav>
+  <canvas id="cnv" style="background-color: #212529; margin-top: 73px;"></canvas>
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="/static/app.js"></script>
+  <!-- <script src="/static/colorChanger.js"></script> -->
+
+</body>
 
 </html>

@@ -41,7 +41,22 @@ io.on('connection', (socket) => {
     socket.on('chat message', (msg) => {
       io.emit('chat message', msg);
       //insert msg.X, msg.Y, msg.F into database
-      client.query('INSERT INTO pixels (x, y, Color) VALUES ($1, $2, $3)', [msg.X, msg.Y, msg.F]).catch(e => console.error(e.stack))
+
+      // if msg.X and msg.Y are in database, update database with new color
+      // else insert new row into database
+      client.query('INSERT INTO pixels (x, y, Color) VALUES ($1, $2, $3)', [msg.X, msg.Y, msg.F], (err, res) => {
+        if (err) {
+          console.log(err.stack)
+          // find row with same x and y
+          // update color
+          client.query('UPDATE pixels SET Color = $1 WHERE x = $2 AND y = $3', [msg.F, msg.X, msg.Y], (err, res) => {
+            if (err) {
+              console.log(err)
+            }
+          })
+        }
+      });
+
       //print msg.X, msg.Y, msg.F to console from database
       client.query('SELECT * FROM pixels', (err, res) => {
         console.log(res.rows)
