@@ -1,2 +1,2 @@
-# TOhacks
-Submission for TOhacks hackathon
+# COINSPIRE
+Submission for TOhacks, Late Night Hacks, and Polesville Hacks.
